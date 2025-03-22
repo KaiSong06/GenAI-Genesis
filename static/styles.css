@@ -1,62 +1,110 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #343541;
+  color: white;
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 100vh;
-  color: white;
 }
 
 .container {
-  width: 60%;
-  background: #444654;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
-  height: 80vh;
+  align-items: center;
+  margin-top: 20px;
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 15px;
   font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.chat-container {
+  display: flex;
+  width: 100%;
+  gap: 20px;
 }
 
 .chat-log {
   flex: 1;
-  border: 1px solid #565869;
+  height: 400px;
+  background-color: #444654;
   padding: 15px;
+  border-radius: 10px;
   overflow-y: auto;
-  background: #343541;
-  border-radius: 8px;
-  font-size: 16px;
+}
+
+#chat-log h2, #ai-log h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#chat-log, #ai-log {
+  scrollbar-width: thin;
+  scrollbar-color: #10a37f #1e1e1e;
+}
+
+#chat-log::-webkit-scrollbar, #ai-log::-webkit-scrollbar {
+  width: 8px;
+}
+
+#chat-log::-webkit-scrollbar-track, #ai-log::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border-radius: 4px;
+}
+
+#chat-log::-webkit-scrollbar-thumb, #ai-log::-webkit-scrollbar-thumb {
+  background-color: #10a37f;
+  border-radius: 4px;
+  border: 2px solid #1e1e1e;
 }
 
 .controls {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding-top: 15px;
+  margin-top: 15px;
 }
 
 button {
-  flex: 1;
-  margin: 5px;
-  padding: 12px;
-  border: none;
-  border-radius: 5px;
   background-color: #10a37f;
   color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  width: 150px;
+  height: 50px;
+  font-size: 16px;
+  margin-top: 10px;
   cursor: pointer;
   font-size: 16px;
-  transition: background 0.3s;
 }
 
 button:hover {
-  background-color: #0e8b6f;
+  background-color: #0e8a6d;
+}
+
+#clear-chat {
+  width: 170px;
+}
+
+/* Speaker text colors */
+.message {
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.speaker-1 {
+  color: lightblue;
+}
+
+.speaker-2 {
+  color: lightgreen;
+}
+
+.ai {
+  color: lightcoral;
 }
