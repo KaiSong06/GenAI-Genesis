@@ -30,7 +30,7 @@ def handle_disconnect():
 # Load the Whisper model (locally)
 model = whisper.load_model("base")  # You can choose "base", "small", "medium", or "large"
 
-def transcript(audio_path: str) -> dict:
+def transcript(audio_path: str) -> dict: # Transcript
     """
     Transcribe audio to text using the Whisper model (locally).
     """
