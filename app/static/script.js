@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentSpeakerIndex = 0;
 
     const speakerColors = {
-        "Speaker 1": "lightblue",
-        "Speaker 2": "lightgreen"
+        "Speaker 1": "green",
+        "FinalSay AI": "grey"
     };
 
     // Load conversation when recording starts
@@ -36,40 +36,55 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error("Error loading conversation:", error));
     }
 
-    // Toggle Recording
+    
     recordButton.addEventListener('click', function () {
         isRecording = !isRecording;
         recordButton.textContent = isRecording ? 'End Recording' : 'Record';
         recordButton.style.backgroundColor = isRecording ? 'red' : '#10a37f';
 
         if (isRecording) {
-            loadConversation();  // Start pulling conversation
-        } else {
-            addMessage(`${speakers[currentSpeakerIndex]} stopped speaking.`, speakers[currentSpeakerIndex], chatLog);
-            switchSpeaker();
-        }
+            loadConversation();  
+        } 
     });
 
     function addMessage(text, speaker, logElement) {
+        const messageContainer = document.createElement('div');
+        messageContainer.style.margin = '10px 0';
+        messageContainer.style.display = 'flex';
+    
         const messageBox = document.createElement('div');
         messageBox.classList.add('message');
         messageBox.textContent = text;
         messageBox.style.color = 'white';
         messageBox.style.backgroundColor = speakerColors[speaker] || 'gray';
-        messageBox.style.padding = '8px';
-        messageBox.style.borderRadius = '5px';
-        messageBox.style.margin = '5px 0';
-        logElement.appendChild(messageBox);
-        logElement.scrollTop = logElement.scrollHeight; // Auto-scroll
-    }
-
-    function switchSpeaker() {
-        currentSpeakerIndex = (currentSpeakerIndex + 1) % speakers.length;
+        messageBox.style.fontSize = '3.5rem';
+        messageBox.style.padding = '15px 20px';
+        messageBox.style.borderRadius = '10px';
+        messageBox.style.wordWrap = 'break-word';
+        messageBox.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+        messageBox.style.display = 'inline-block'; 
+        messageBox.style.maxWidth = '180%';
+        messageBox.style.whiteSpace = 'normal';
+        
+        messageContainer.appendChild(messageBox); 
+        logElement.appendChild(messageContainer);
+        logElement.scrollTop = logElement.scrollHeight;
     }
 
     feedbackButton.addEventListener('click', function () {
-        const feedbackText = "AI Feedback: Your argument was logical, but could use more supporting evidence.";
-        addMessage(feedbackText, 'AI', aiLog);
+        fetch('/get_feedback')
+            .then(response => response.json())
+            .then(data => {
+                // Check if feedback exists in the response
+                const feedbackText = data.feedback || "No feedback available.";
+                
+                // Display the feedback in the AI log
+                addMessage(feedbackText, 'FinalSay AI', aiLog);
+            })
+            .catch(error => {
+                console.error("Error fetching feedback:", error);
+                addMessage("Error fetching feedback. Please try again.", 'FinalSay AI', aiLog);
+            });
     });
 
     clearChatButton.addEventListener('click', function () {
@@ -78,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 console.log("Chat history cleared:", data);
                 chatLog.innerHTML = "";
-                aiLog.innerHTML = "";
+                aiLog.innerHTML = ""
             })
             .catch(error => console.error("Error clearing chat history:", error));
     });
