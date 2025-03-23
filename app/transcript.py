@@ -42,8 +42,8 @@ def transcript(audio_path: str) -> dict: # Transcript
         "text": result["text"],  # The transcribed textxc
         "language": result["language"],  # Detected language
         "duration": result["segments"], 
-        "start" = segment["start"],
-        "end" = segment["end"]
+        "start": result["start"],
+        "end" :result["end"]
      } # Audio segments with time details
     return transcription_json
 
