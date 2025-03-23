@@ -1,0 +1,20 @@
+[
+  {
+      "id": 1711123456789,
+      "timestamp": "2025-03-22T12:30:00Z",
+      "messages": [
+          {
+              "speaker": "Speaker 1",
+              "text": "I believe technology is improving education.",
+              "timestamp": "2025-03-22T12:30:05Z"
+          },
+          {
+              "speaker": "Speaker 2",
+              "text": "But it also creates distractions for students.",
+              "timestamp": "2025-03-22T12:30:15Z"
+          }
+      ]
+  }
+]
+
+
