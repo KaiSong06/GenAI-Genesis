@@ -1,110 +1,307 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #343541;
-  color: white;
+
+* {
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
+  box-sizing: border-box;
 }
+
+body {
+  font-family: 'Abhaya Libre', serif;
+  overflow-x: hidden;
+  background-color: #29282C;
+  color: white;
+}
+
 
 .container {
-  width: 80%;
-  max-width: 1000px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
-
-h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.chat-container {
-  display: flex;
+  position: relative;
   width: 100%;
-  gap: 20px;
+  max-width: 100vw;
+  min-height: 100vh;
 }
 
-.chat-log {
-  flex: 1;
-  height: 400px;
-  background-color: #444654;
-  padding: 15px;
-  border-radius: 10px;
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  min-height: 300px;
+  display: flex;
+  align-items: flex-start;
+  padding: 2rem 10%;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+}
+
+.hero-content {
+  margin-top: 2rem;
+  z-index: 1;
+}
+
+.main-title {
+  color: white;
+  font-size: 1rem;
+  font-family: 'Jacques Francois', serif;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  color: white;
+  font-size: 0.5rem;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  padding: 0;
+}
+
+.social-button:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.social-button:active {
+  transform: scale(0.95);
+}
+
+.social-button img {
+  width: 24px;
+  height: 24px;
+}
+
+
+.try-it-section {
+  padding: 1rem 10%;
+  margin-top: 1rem;
+}
+
+.try-it-header {
+  margin-bottom: 1rem;
+}
+
+.try-it-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.try-it-header p {
+  font-size: 0.8rem;
+}
+
+.content-section {
+  position: relative;
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+.action-button {
+  display: inline-block; 
+  margin: 10px 0; 
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 0.5rem 1rem;
+  background: #D9D9D9;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-family: 'Abril Fatface', cursive;
+  color: #2D180D;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.action-button:hover {
+  background-color: #E9E9E9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.action-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.feedback-container {
+  width: 100%;
+  height: 80px;
+  background: #EADBCD;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  padding: 10px; 
   overflow-y: auto;
 }
 
-#chat-log h2, #ai-log h2 {
-  text-align: center;
-  margin-bottom: 10px;
+.history-container {
+  width: 100%;
+  height: 130px;
+  background: #F8D2BE;
+  border-radius: 20px;
+  padding: 10px; 
+  overflow-y: auto;
 }
 
-#chat-log, #ai-log {
-  scrollbar-width: thin;
-  scrollbar-color: #10a37f #1e1e1e;
+.feedback-container, .history-container {
+  width: 100%;
+  padding: 15px;
+  overflow-y: auto;
 }
 
-#chat-log::-webkit-scrollbar, #ai-log::-webkit-scrollbar {
-  width: 8px;
+@media (min-width: 768px) {
+  .hero-section {
+    height: 60vh;
+    min-height: 400px;
+  }
+  
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .tagline {
+    font-size: 1.5rem;
+  }
+  
+  .try-it-header h3 {
+    font-size: 1rem;
+  }
+  
+  .try-it-header p {
+    font-size: 1rem;
+  }
+  
+  .social-button img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .action-button {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+  
+  .feedback-container {
+    height: 120px;
+  }
+  
+  .history-container {
+    height: 180px;
+  }
 }
 
-#chat-log::-webkit-scrollbar-track, #ai-log::-webkit-scrollbar-track {
-  background: #1e1e1e;
-  border-radius: 4px;
+@media (min-width: 1024px) {
+  .hero-section {
+    height: 70vh;
+    min-height: 500px;
+  }
+  
+  .main-title {
+    font-size: 6rem;
+  }
+  
+  .tagline {
+    font-size: 1.5rem;
+  }
+  
+  .try-it-header h3 {
+    font-size: 1.5rem;
+  }
+  
+  .try-it-header p {
+    font-size: 1.2rem;
+  }
+  
+  .social-button img {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .action-button {
+    font-size: 1.2rem;
+    padding: 0.7rem 1.5rem;
+  }
+  
+  .feedback-container {
+    height: 200px;
+  }
+  
+  .history-container {
+    height: 300px;
+  }
 }
 
-#chat-log::-webkit-scrollbar-thumb, #ai-log::-webkit-scrollbar-thumb {
-  background-color: #10a37f;
-  border-radius: 4px;
-  border: 2px solid #1e1e1e;
-}
-
-.controls {
-  margin-top: 15px;
-}
-
-button {
-  background-color: #10a37f;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  width: 150px;
-  height: 50px;
-  font-size: 16px;
-  margin-top: 10px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #0e8a6d;
-}
-
-#clear-chat {
-  width: 170px;
-}
-
-/* Speaker text colors */
-.message {
-  padding: 8px;
-  margin: 5px 0;
-  border-radius: 5px;
-}
-
-.speaker-1 {
-  color: lightblue;
-}
-
-.speaker-2 {
-  color: lightgreen;
-}
-
-.ai {
-  color: lightcoral;
+@media (min-width: 1440px) {
+  .main-title {
+    font-size: 17rem;
+  }
+  
+  .tagline {
+    font-size: 10.75rem;
+  }
+  
+  .feedback-container {
+    height: 300px;
+  }
+  
+  .history-container {
+    height: 400px;
+  }
+  .tagline {
+    font-size: 4rem;
+  }
+  
+  .try-it-header h3 {
+    font-size: 4rem;
+  }
+  
+  .try-it-header p {
+    font-size: 4rem;
+  }
+  .social-button img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .action-button {
+    font-size: 3.2rem;
+    padding: 0.7rem 1.5rem;
+  }
+  
+  .feedback-container {
+    height: 600px;
+  }
+  
+  .history-container {
+    height: 600px;
+  }
 }
