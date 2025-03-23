@@ -23,3 +23,8 @@ Or
 ```bash
    python -m flask run
 ```
+
+Step ?: Install :
+```bash
+   pip install -qU "langchain-xai"
+```
