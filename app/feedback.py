@@ -8,9 +8,9 @@ load_dotenv()
 
 API_KEY = os.getenv("COHERE_API_KEY")
 
-model = init_chat_model("command-r-plus", model_provider="cohere", API_KEY=API_KEY)
+#model = init_chat_model("command-r-plus", model_provider="cohere", API_KEY=API_KEY)
 
-def getFeedback():
+def getFeedback(model):
     input = []
 
     ##Parse through json

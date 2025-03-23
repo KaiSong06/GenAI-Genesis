@@ -6,12 +6,10 @@ from langchain_core.prompts import ChatPromptTemplate
 
 load_dotenv()
 
-API_KEY = os.getenv("COHERE_API_KEY")
-
-model = init_chat_model("command-r-plus", model_provider="cohere", API_KEY=API_KEY)
+COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 
 
-def returnArguments(argument: str):
+def returnArguments(argument: str, model):
     
     ##Prompts
     system_template = "You are an expert in  {specialization}" \

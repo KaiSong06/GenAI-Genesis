@@ -36,7 +36,7 @@ def transcript(audio_path: str) -> dict: # Transcript
     """
     # Transcribe the audio using the Whisper model
     result = model.transcribe(audio_path)
-
+    print(result)
     # Create a JSON-like dictionary with transcription details
     transcription_json = {
         "text": result["text"],  # The transcribed text

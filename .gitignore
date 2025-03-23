@@ -113,3 +113,6 @@ dmypy.json
 
 # VS Code
 .vscode/
+
+#Chunks
+./app/chunks/

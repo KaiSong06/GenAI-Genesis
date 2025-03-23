@@ -18,8 +18,8 @@ import getpass
 import os
 
 
-if not os.environ.get("OPENAI_API_KEY"):
- os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter API key for OpenAI: ")
+#if not os.environ.get("OPENAI_API_KEY"):
+# os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter API key for OpenAI: ")
 
 
 from langchain.chat_models import init_chat_model
@@ -29,7 +29,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 
 
-model = init_chat_model("gpt-4o-mini", model_provider="openai")
+#model = init_chat_model("gpt-4o-mini", model_provider="openai")
 
 
 ## overwrite
@@ -52,7 +52,7 @@ def reading_json(filename:str)-> dict[str, str]:
 
 
   
-def assessing_bias(filename:str) -> str:
+def assessing_bias(filename:str, model) -> str:
    """
    Convert system and user text into messages that can be used by langchain
    Return dict of the updated text with biased removed

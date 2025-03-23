@@ -13,7 +13,51 @@ document.addEventListener('DOMContentLoaded', function () {
         "Speaker 1": "green",
         "FinalSay AI": "grey"
     };
+document.addEventListener("DOMContentLoaded", function() {
+    fetch("/get_conversation")
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error("Error loading conversation:", data.error);
+                return;
+            }
+            const latestConversation = data[data.length - 1];
+            if (latestConversation && latestConversation.messages) {
+                // Process and display the conversation
+                console.log(latestConversation.messages);
+            } else {
+                console.error("No conversation messages found.");
+            }
+        })
+        .catch(error => console.error("Error loading conversation:", error));
+});
 
+document.getElementById("record").addEventListener("click", function() {
+    
+    
+    const audioFile = document.getElementById("audioInput").files[0];
+    if (!audioFile) {
+        console.error("Audio file is required");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("audio", audioFile);
+
+    fetch("/transcribe", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error("Error transcribing audio:", data.error);
+            return;
+        }
+        console.log("Transcription:", data);
+    })
+    .catch(error => console.error("Error transcribing audio:", error));
+});
     // Load conversation when recording starts
     function loadConversation() {
         fetch('/get_conversation')
@@ -41,11 +85,30 @@ document.addEventListener('DOMContentLoaded', function () {
         isRecording = !isRecording;
         recordButton.textContent = isRecording ? 'End Recording' : 'Record';
         recordButton.style.backgroundColor = isRecording ? 'red' : '#10a37f';
-
+    
         if (isRecording) {
-            loadConversation();  
-        } 
+            fetch('/transcribe', { method: 'POST' })
+                .then(response => console.log("Recording started:", response))
+                .catch(error => console.error("Error starting recording:", error));
+                loadConversation();
+        } else {
+            // Recording just ended, process the conversation
+            fetch('/process_conversation', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Conversation processed:", data);
+                // Optional: You could automatically display feedback here
+                // or just let the user click the feedback button
+            })
+            .catch(error => console.error("Error processing conversation:", error));
+        }
     });
+    
 
     function addMessage(text, speaker, logElement) {
         const messageContainer = document.createElement('div');
