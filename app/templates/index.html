@@ -9,11 +9,21 @@
 <body>
     <div class="container">
         <h1>FinalSay</h1>
-        <div class="chat-log" id="chat-log"></div>
+        <div class="chat-container">
+            <div class="chat-log" id="chat-log">
+                <h2>Speakers</h2>
+            </div>
+            <div class="chat-log" id="ai-log">
+                <h2>AI Feedback</h2>
+            </div>
+        </div>
         <div class="controls">
             <button id="record">Record</button>
-            <button id="switch-speakers">Switch Speakers</button>
+            <button id="give-feedback">Give Feedback</button>
+            <button id="clear-chat">Clear Chat History</button>
         </div>
     </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
