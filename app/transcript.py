@@ -2,6 +2,7 @@ import whisper
 import json
 from flask import Flask
 from flask_socketio import SocketIO, send
+import os
 
 app1 = Flask(__name__)
 socketio = SocketIO(app1)
@@ -41,6 +42,16 @@ def transcript(audio_path: str) -> dict: # Transcript
     transcription_json = {
         "text": result["text"],  # The transcribed text
      }
+    
+    if os.path.exists("transcription.json") and os.path.getsize("transcription.json") > 0:
+        with open("transcription", "r") as file:
+            data = json.load(file)
+        data.append(transcription_json)
+    else:
+        data = [result]
+
+    with open("AI_Arguments.json", "w") as file:
+        json.dump(data, file, indent=4)
     
     # Return the transcription details
     return transcription_json
