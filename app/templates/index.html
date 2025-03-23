@@ -5,25 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FinalSay</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Abhaya+Libre:wght@400;500;600&family=Abril+Fatface&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>FinalSay</h1>
-        <div class="chat-container">
-            <div class="chat-log" id="chat-log">
-                <h2>Speakers</h2>
-            </div>
-            <div class="chat-log" id="ai-log">
-                <h2>AI Feedback</h2>
-            </div>
+  <div class="container">
+    <div class="hero-section">
+      <img src="static/media/tester.png" alt="Lady Justice statue" class="hero-image">
+      
+      <div class="hero-content">
+        <h1 class="main-title">FinalSay</h1>
+        <div class="tagline">
+          <p>Think Sharper, Speak Stronger.</p>
+          <p>Have the Final Say.</p>
         </div>
-        <div class="controls">
-            <button id="record">Record</button>
-            <button id="give-feedback">Give Feedback</button>
-            <button id="clear-chat">Clear Chat History</button>
+        
+        <div class="social-icons">
+          <button class="social-button" onclick="window.open('https://github.com/KaiSong06/GenAI-Genesis', '_blank')">
+            <img src="static/media/testthing.png" alt="Email">
+        </button>
+        
+        <button class="social-button" onclick="window.open('https://www.instagram.com/genaigenesis/', '_blank')">
+            <img src="static/media/v2030_118.png" alt="Instagram">
+        </button>
         </div>
+      </div>
     </div>
+    
+    <div class="try-it-section">
+      <div class="try-it-header">
+        <h3>Try It Out!</h3>
+        <p>Start Recording your debate. Stop recording and wait for your feedback!</p>
+      </div>
+      
+      <div class="content-section">
+        <div id="chat-log" class="feedback-container"></div>
+    
+        <button id="record" class="action-button record-button">Start/Stop Recording</button>
+        <input type="file" id="audioInput" accept="audio/*" class="action-button file-button">
+        <button id="give-feedback" class="action-button feedback-button">Give Feedback</button>
+      </div>
+    
+    
+      
+      <div class="content-section">
+        <div id="ai-log"  class="history-container"></div>
+        <button id="clear-chat" class="action-button clear-button">Clear History</button>
+      </div>
+    </div>
+  </div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
