@@ -39,11 +39,7 @@ def transcript(audio_path: str) -> dict: # Transcript
 
     # Create a JSON-like dictionary with transcription details
     transcription_json = {
-        "text": result["text"],  # The transcribed textxc
-        "language": result["language"],  # Detected language
-        #"duration": result["segments"], 
-        #"start": result["start"],
-        #"end": result["end"]
+        "text": result["text"],  # The transcribed text
      }
     
     # Return the transcription details
