@@ -48,35 +48,43 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function addMessage(text, speaker, logElement) {
+        const messageContainer = document.createElement('div');
+        messageContainer.style.margin = '10px 0';
+        messageContainer.style.display = 'flex';
+    
+        const messageBox = document.createElement('div');
+        messageBox.classList.add('message');
+        messageBox.textContent = text;
+        messageBox.style.color = 'white';
+        messageBox.style.backgroundColor = speakerColors[speaker] || 'gray';
+        messageBox.style.fontSize = '3.5rem';
+        messageBox.style.padding = '15px 20px';
+        messageBox.style.borderRadius = '10px';
+        messageBox.style.wordWrap = 'break-word';
+        messageBox.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+        messageBox.style.display = 'inline-block'; 
+        messageBox.style.maxWidth = '180%';
+        messageBox.style.whiteSpace = 'normal';
         
-            const messageContainer = document.createElement('div');
-            messageContainer.style.margin = '10px 0';
-            messageContainer.style.display = 'flex';
-        
-            
-            const messageBox = document.createElement('div');
-            messageBox.classList.add('message');
-            messageBox.textContent = text;
-            messageBox.style.color = 'white';
-            messageBox.style.backgroundColor = speakerColors[speaker] || 'gray';
-            messageBox.style.fontSize = '3.5rem';
-            messageBox.style.padding = '15px 20px';
-            messageBox.style.borderRadius = '10px';
-            messageBox.style.wordWrap = 'break-word';
-            messageBox.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
-            messageBox.style.display = 'inline-block'; 
-            messageBox.style.maxWidth = '180%';
-            messageBox.style.whiteSpace = 'normal';
-            
-            
-            messageContainer.appendChild(messageBox); 
-            logElement.appendChild(messageContainer);
-            logElement.scrollTop = logElement.scrollHeight;
-        }
+        messageContainer.appendChild(messageBox); 
+        logElement.appendChild(messageContainer);
+        logElement.scrollTop = logElement.scrollHeight;
+    }
 
     feedbackButton.addEventListener('click', function () {
-        const feedbackText = "FinalSay AI: "+"concatenate here";
-        addMessage(feedbackText, 'AI', aiLog);
+        fetch('/get_feedback')
+            .then(response => response.json())
+            .then(data => {
+                // Check if feedback exists in the response
+                const feedbackText = data.feedback || "No feedback available.";
+                
+                // Display the feedback in the AI log
+                addMessage(feedbackText, 'FinalSay AI', aiLog);
+            })
+            .catch(error => {
+                console.error("Error fetching feedback:", error);
+                addMessage("Error fetching feedback. Please try again.", 'FinalSay AI', aiLog);
+            });
     });
 
     clearChatButton.addEventListener('click', function () {
@@ -85,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 console.log("Chat history cleared:", data);
                 chatLog.innerHTML = "";
-                aiLog.innerHTML = "";
+                aiLog.innerHTML = ""
             })
             .catch(error => console.error("Error clearing chat history:", error));
     });
