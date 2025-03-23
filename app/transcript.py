@@ -41,16 +41,15 @@ def transcript(audio_path: str) -> dict: # Transcript
     transcription_json = {
         "text": result["text"],  # The transcribed textxc
         "language": result["language"],  # Detected language
-        "duration": result["segments"], 
-        "start": result["start"],
-        "end": result["end"]
-     } # Audio segments with time details
+        #"duration": result["segments"], 
+        #"start": result["start"],
+        #"end": result["end"]
+     }
+    
+    # Return the transcription details
     return transcription_json
 
-## Use Cases
+## Test Case
+
 # result = transcript(r".\app\speech1.mp3")
-
 # print(json.dumps(result, indent=4)) 
-
-
-          
