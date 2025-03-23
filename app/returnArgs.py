@@ -6,7 +6,9 @@ from langchain_core.prompts import ChatPromptTemplate
 
 load_dotenv()
 
-model = init_chat_model("command-r-plus", model_provider="cohere")
+API_KEY = os.getenv("COHERE_API_KEY")
+
+model = init_chat_model("command-r-plus", model_provider="cohere", API_KEY=API_KEY)
 
 
 def returnArguments(argument: str):
